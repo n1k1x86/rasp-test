@@ -3,6 +3,9 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	agent_ssrf "github.com/n1k1x86/rasp-agents/ssrf"
@@ -27,6 +30,8 @@ func main() {
 	updateURL := "test url update"
 	err = agent.RegAgent(hostRules, ipRules, regexpRules, serviceName,
 		serviceDescription, agentName, updateURL)
+
+	log.Println("AGENT ID = ", agent.GetAgentID())
 	if err != nil {
 		log.Println(err)
 	}
@@ -35,6 +40,10 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
 
-	time.Sleep(time.Second * 2)
+	<-sig
+	cancel()
+	time.Sleep(time.Second * 10)
 }
