@@ -2,10 +2,10 @@ module rasp-test
 
 go 1.23.0
 
-require github.com/n1k1x86/rasp-agents v0.0.8
+require github.com/n1k1x86/rasp-agents v0.0.10
 
 require (
-	github.com/n1k1x86/rasp-grpc-contract v0.1.4 // indirect
+	github.com/n1k1x86/rasp-grpc-contract v0.1.8 // indirect
 	golang.org/x/net v0.43.0 // indirect
 	golang.org/x/sys v0.35.0 // indirect
 	golang.org/x/text v0.28.0 // indirect
