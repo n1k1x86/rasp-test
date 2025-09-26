@@ -15,7 +15,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	agent, err := agent_ssrf.NewSSRFClient(ctx, "localhost", "50051")
+	agent, err := agent_ssrf.NewSSRFClient(ctx, "localhost", "50051", "localhost:8000", time.Second*30)
 	if err != nil {
 		log.Fatal(err)
 	}
